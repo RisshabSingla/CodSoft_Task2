@@ -1,28 +1,7 @@
-import { useState } from "react";
 import NavBar from "../components/NavBar";
-
-const questions = [
-  {
-    question: "Hello ",
-    choices: ["A", "B", "C", "D"],
-    correct: "B",
-  },
-  {
-    question: "Hello 2",
-    choices: ["AB", "BC", "CD", "DE"],
-    correct: "BC",
-  },
-  {
-    question: "Hello 3",
-    choices: ["A", "B", "C", "D"],
-    correct: "B",
-  },
-  {
-    question: "Hello 4",
-    choices: ["A", "B", "C", "D"],
-    correct: "B",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Option({ choice, index, handleOptionClick, selectedOption }) {
   return (
@@ -47,10 +26,6 @@ function Question({ question, choices, handleOptionClick, selectedOption }) {
         {question}
       </div>
 
-      {/* <div className="text-center m-2 p-3  w-full bg-slate-500 rounded-xl ">
-        <p className="font-bold"> Choices</p>
-      </div> */}
-
       <div>
         {choices.map((choice, index) => (
           <Option
@@ -66,13 +41,22 @@ function Question({ question, choices, handleOptionClick, selectedOption }) {
   );
 }
 
-function Quiz() {
+function Quiz({ loggedInID, userXAuth, quizData }) {
+  const navigate = useNavigate();
+  // console.log("Data");
+  // console.log(quizData);
+  const questions = quizData.questions;
+  useEffect(() => {
+    questions.sort(() => Math.random() - 0.5);
+  }, []);
   const [currQ, setCurrQ] = useState(0);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [currScore, setCurrScore] = useState(0);
   const [checkDisable, setCheckDisable] = useState(false);
   const [completed, setCompleted] = useState(false);
-
+  const [userSettings, setUserSettings] = useState([]);
+  axios.defaults.headers.common["x-auth-token"] = `${userXAuth}`;
+  // console.log(quiz);
   const [message, setMessage] = useState("");
   function handleOptionClick(index) {
     if (!checkDisable) {
@@ -80,6 +64,22 @@ function Quiz() {
       setMessage("");
     }
   }
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/api/user/${loggedInID}`
+        );
+        console.log(res.data);
+        setUserSettings(res.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
+    }
+    getData();
+  }, []);
 
   function checkCorrect() {
     if (selectedOption === -1) {
@@ -117,7 +117,7 @@ function Quiz() {
   return (
     <div className="bg-black h-screen">
       <div className="sticky top-0 bg-black">
-        <NavBar />
+        <NavBar userSettings={userSettings} />
       </div>
       <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-800">
         <div className="rounded-xl m-4 p-4 bg-slate-700 h-full">
@@ -181,6 +181,14 @@ function Quiz() {
                     <p> You have completed the quiz </p>
                     <p>
                       Your Final Score {currScore} / {questions.length}
+                    </p>
+                    <p className="p-2">
+                      <button
+                        className="p-2 text-slate-200 bg-slate-800 rounded-xl"
+                        onClick={() => navigate("/dashboard")}
+                      >
+                        Dashboard
+                      </button>
                     </p>
                   </div>
                 </div>

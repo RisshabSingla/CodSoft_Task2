@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function DropDown() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -49,7 +49,7 @@ export default function DropDown() {
               {({ active }) => (
                 <button
                   onClick={() => {
-                    // navigate("/");
+                    navigate("/");
                     window.location.reload();
                   }}
                   type="submit"

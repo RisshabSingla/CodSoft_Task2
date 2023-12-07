@@ -1,7 +1,7 @@
 import useScreenSize from "./useScreenSize";
 import User from "./User";
 
-function NavBar() {
+function NavBar({ userSettings }) {
   const screenSize = useScreenSize();
   return (
     <div className="w-screen flex justify-between">
@@ -17,7 +17,7 @@ function NavBar() {
       </div>
 
       <div className="text-white">
-        <User />
+        <User userSettings={userSettings} />
       </div>
     </div>
   );
