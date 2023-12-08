@@ -4,6 +4,7 @@ import Quiz from "./pages/Quiz";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import WrongPage from "./pages/WrongPage";
 
 function App() {
   const [loggedInID, setLoggedInID] = useState("");
@@ -55,6 +56,7 @@ function App() {
             />
           }
         />
+        <Route path="*" element={<WrongPage />} />
       </Routes>
     </BrowserRouter>
   );
