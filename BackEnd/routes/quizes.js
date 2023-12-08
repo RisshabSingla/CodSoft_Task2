@@ -11,7 +11,7 @@ router.post("/", auth, async (req, res) => {
   if (error)
     return res
       .status(400)
-      .send({ message: error.details[0].message, error: "Hello" });
+      .send({ message: error.details[0].message, error: "Validation error" });
 
   const quiz = await Quiz(req.body).save();
   const user = await User.findById(req.user._id);

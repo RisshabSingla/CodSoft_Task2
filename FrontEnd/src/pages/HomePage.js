@@ -32,7 +32,7 @@ function Login({
     axios
       .post("http://localhost:8080/api/login", user)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setUserXAuth(res.data.data);
         setLoggedInID(res.data.id);
         setMessage("Login Successful");
@@ -45,7 +45,7 @@ function Login({
         // <Navigate replace to="/dashboard" />;
       })
       .catch((res) => {
-        console.log(res);
+        // console.log(res);
         setMessage(res.response.data.message);
         // setMessageClassName("mb-4 pb-4 ");
       });
@@ -145,13 +145,13 @@ function SignUp({ setOverlay, message, setMessage }) {
     axios
       .post("http://localhost:8080/api/user", user)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMessage("Please login using your new credentials");
         setOverlay("login");
         // navigate("/");
       })
       .catch((res) => {
-        console.log(res);
+        // console.log(res);
         setMessage(res.response.data.message);
         // setMessageClassName("mb-4 pb-4 ");
       });

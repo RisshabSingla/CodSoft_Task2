@@ -71,10 +71,10 @@ function Quiz({ loggedInID, userXAuth, quizData }) {
         const res = await axios.get(
           `http://localhost:8080/api/user/${loggedInID}`
         );
-        console.log(res.data);
+        // console.log(res.data);
         setUserSettings(res.data.data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         navigate("/");
       }
     }

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Choice from "./Choice";
 
-function NewQuestion({ questions, setQuestions, setAddQuestion }) {
+function NewQuestion({ questions, setQuestions, setAddQuestion, setMessage }) {
   const [isOpen, setIsOpen] = useState(true);
   const [choices, setChoices] = useState([]);
   const [question, setQuestion] = useState("");
@@ -14,19 +14,37 @@ function NewQuestion({ questions, setQuestions, setAddQuestion }) {
   function handleQuestionChange(e) {
     setQuestion(e.target.value);
   }
+
+  function checkQuestion() {
+    if (question.length < 5) {
+      throw new Error("Invalid question length");
+    }
+    if (choices.length < 2) {
+      throw new Error("Number of choices should be atleast 2");
+    }
+    if (correct === "" || correct === "Please select an option") {
+      throw new Error("Please select the correct option");
+    }
+  }
   function handleQuestionAdd() {
-    setQuestions([
-      ...questions,
-      { question: question, choices: choices, correct: correct },
-    ]);
-    setAddQuestion(false);
+    try {
+      checkQuestion();
+      setQuestions([
+        ...questions,
+        { question: question, choices: choices, correct: correct },
+      ]);
+      setAddQuestion(false);
+    } catch (err) {
+      // console.log(err.message);
+      setMessage(err.message);
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+    }
   }
 
   function handleCorrectChange(e) {
-    if (e.target.value !== "Please select an option") {
-      setCorrect(e.target.value);
-    }
-    console.log();
+    setCorrect(e.target.value);
   }
 
   return (
@@ -61,8 +79,10 @@ function NewQuestion({ questions, setQuestions, setAddQuestion }) {
                 <button
                   className="w-full rounded-xl p-2 bg-slate-600"
                   onClick={() => {
-                    setChoices([...choices, newChoice]);
-                    setNewChoice("");
+                    if (newChoice !== "") {
+                      setChoices([...choices, newChoice]);
+                      setNewChoice("");
+                    }
                   }}
                 >
                   Add Choice

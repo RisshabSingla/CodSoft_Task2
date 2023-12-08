@@ -17,7 +17,7 @@ export function AttendQuiz({ setQuiz }) {
         const res = await axios.get(`http://localhost:8080/api/quiz/${quizID}`);
         // console.log("getting");
         setMessage("Quiz starting");
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setQuiz(res.data.data);
         setTimeout(() => {
           navigate("/quiz");

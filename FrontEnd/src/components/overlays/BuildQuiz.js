@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewQuestion from "./components/NewQuestion";
 import { Question } from "./components/Question";
+import axios from "axios";
 
 function BuildQuiz({ setOverlay }) {
   const [questions, setQuestions] = useState([]);
   const [addQuestion, setAddQuestion] = useState(false);
   const [quizName, setQuizName] = useState("");
   const [quizDesc, setQuizDesc] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setMessage("List of questions updated");
+    setTimeout(() => {
+      setMessage("");
+    }, 1000);
+  }, [questions]);
 
   function handleQuizName(e) {
     setQuizName(e.target.value);
@@ -15,8 +24,36 @@ function BuildQuiz({ setOverlay }) {
     setQuizDesc(e.target.value);
   }
 
+  async function sendQuiz() {
+    try {
+      const quiz = {
+        name: quizName,
+        description: quizDesc,
+        questions: questions,
+      };
+      const res = await axios.post("http://localhost:8080/api/quiz", quiz);
+      setMessage("Quiz made successfully");
+      setTimeout(() => {
+        setMessage("");
+        setOverlay("");
+      }, 2000);
+    } catch (err) {
+      setMessage(err.message);
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+    }
+  }
+
   function handleAddQuestion() {
-    setOverlay("");
+    if (questions.length < 1) {
+      setMessage("Please add a few questions before submitting");
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+      return;
+    }
+    sendQuiz();
   }
   return (
     <div className="h-full  overflow-auto">
@@ -48,6 +85,7 @@ function BuildQuiz({ setOverlay }) {
                   questions={questions}
                   setQuestions={setQuestions}
                   setAddQuestion={setAddQuestion}
+                  setMessage={setMessage}
                 />
               ) : (
                 ""
@@ -59,6 +97,13 @@ function BuildQuiz({ setOverlay }) {
               >
                 Add a new Question
               </button>
+              {message !== "" ? (
+                <div className="col-span-3 p-2 flex justify-evenly text-white font-bold">
+                  {message}
+                </div>
+              ) : (
+                ""
+              )}
               {questions.map((question, index) => (
                 <Question
                   questions={questions}
@@ -73,6 +118,7 @@ function BuildQuiz({ setOverlay }) {
             </div>
           </div>
         </div>
+
         <div className="p-2 flex justify-evenly">
           <button
             onClick={handleAddQuestion}
