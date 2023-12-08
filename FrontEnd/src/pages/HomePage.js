@@ -233,10 +233,8 @@ function SignUp({ setOverlay, message, setMessage }) {
               ""
             ) : (
               <div className="mb-4 pb-4">
-                <center>
-                  <label className="p-2 hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center">
-                    {message}
-                  </label>
+                <center className="p-2 hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center">
+                  {message}
                 </center>
               </div>
             )}
@@ -278,7 +276,7 @@ function Overlay({ overlay, setOverlay, setLoggedInID, setUserXAuth }) {
             <img width="20px " src="./images/cross.svg" alt="X"></img>
           </button>
         </div>
-        <div className="bg-slate-700 opacity-90 rounded-2xl">
+        <div className="bg-slate-700  rounded-2xl">
           {overlay === "login" ? (
             <Login
               setOverlay={setOverlay}

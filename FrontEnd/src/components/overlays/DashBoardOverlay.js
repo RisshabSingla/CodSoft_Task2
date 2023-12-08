@@ -19,7 +19,7 @@ export function DashBoardOverlay({
               <img width="20px " src="./images/cross.svg" alt="X"></img>
             </button>
           </div>
-          <div className="h-full bg-slate-700 opacity-90 rounded-2xl">
+          <div className="h-full bg-slate-700 rounded-2xl">
             {overlay === "made" ? (
               <QuizesMade made={userSettings.createdQuizes} />
             ) : (

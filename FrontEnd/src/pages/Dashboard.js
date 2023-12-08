@@ -122,7 +122,7 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
               <div className="font-bold text-xl rounded-xl bg-slate-300 m-5 p-3">
                 <div className="">
                   {/* Quiz Details Header */}
-                  <div className="grid grid-cols-7 p-2">
+                  <div className="grid grid-cols-8 p-2 gap-3">
                     <div className="col-span-1">
                       <p className="truncate"> Serial No.</p>
                     </div>
@@ -138,7 +138,7 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
                   </div>
                   {/* {All the quizes } */}
                   {quizes.map((quiz, index) => (
-                    <div key={index} className=" grid grid-cols-8 p-2">
+                    <div key={index} className="grid grid-cols-8 p-2 gap-3">
                       <div className="col-span-1">
                         <p className="truncate"> {index + 1}</p>
                       </div>
