@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,18 @@ export function AttendQuiz({ setQuiz }) {
   const navigate = useNavigate();
   const [quizID, setQuizID] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    // console.log(navigator);
+    async function Read() {
+      const res = await navigator.clipboard.readText();
+      // console.log(res);
+      setQuizID(res);
+    }
+    setTimeout(() => {
+      Read();
+    }, 100);
+  }, []);
 
   function handleInputChange(e) {
     // console.log(e.target.value);
