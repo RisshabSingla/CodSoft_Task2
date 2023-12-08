@@ -61,11 +61,17 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
         <div>
           <NavBar userSettings={userSettings} />
         </div>
-        <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-800 ">
-          <div className="rounded-xl m-4 p-4 bg-slate-700 h-full">
-            <div className="rounded-xl m-2 p-2 bg-slate-600 h-full overflow-auto">
+        <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-900 ">
+          <div className="rounded-xl m-4 p-4 bg-slate-800 h-full">
+            <div className="rounded-xl m-2 p-2 bg-slate-700 h-full overflow-auto">
+              {/* {User Details & Quiz Tools} */}
+
               <div className="m-5 p-3">
+                {/* {User Details & Quiz Tools} */}
+
                 <div className="block md:flex justify-around">
+                  {/* {User Details} */}
+
                   <div className="bg-slate-300 rounded-lg p-2 font-bold text-lg m-2 ">
                     <div className="px-3">{userSettings?.name}</div>
                     <div className="px-3 ">{userSettings?.email}</div>
@@ -90,6 +96,8 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
                       </button>
                     </div>
                   </div>
+
+                  {/* {Quiz Tools} */}
                   <div className="bg-slate-300 rounded-lg p-2 font-bold text-lg m-2">
                     <div className="p-2 text-center">Quiz Tools</div>
                     <div className="sm:flex justify-around	">
@@ -107,8 +115,11 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
                   </div>
                 </div>
               </div>
+              {/* All the quizes */}
+
               <div className="font-bold text-xl rounded-xl bg-slate-300 m-5 p-3">
                 <div className="">
+                  {/* Quiz Details Header */}
                   <div className="grid grid-cols-7 p-2">
                     <div className="col-span-1">
                       <p className="truncate"> Serial No.</p>
@@ -123,6 +134,7 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
                       <p className="truncate"> Unique Code</p>
                     </div>
                   </div>
+                  {/* {All the quizes } */}
                   {quizes.map((quiz, index) => (
                     <div key={index} className=" grid grid-cols-8 p-2">
                       <div className="col-span-1">

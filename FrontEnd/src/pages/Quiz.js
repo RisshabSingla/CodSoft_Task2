@@ -9,7 +9,7 @@ function Option({ choice, index, handleOptionClick, selectedOption }) {
       <button
         onClick={() => handleOptionClick(index)}
         className={`text-left m-2 w-full p-3 ${
-          index === selectedOption ? "bg-slate-700" : "bg-slate-500"
+          index === selectedOption ? "bg-slate-200" : "bg-slate-400"
         } rounded-xl`}
       >
         <span className="font-bold">{index + 1} </span> : {choice}
@@ -21,7 +21,7 @@ function Option({ choice, index, handleOptionClick, selectedOption }) {
 function Question({ question, choices, handleOptionClick, selectedOption }) {
   return (
     <div>
-      <div className="m-2 p-3 w-full bg-slate-500 rounded-xl ">
+      <div className="m-2 p-3 w-full bg-slate-400 rounded-xl ">
         <span className="font-bold	">Question: </span>
         {question}
       </div>
@@ -119,18 +119,18 @@ function Quiz({ loggedInID, userXAuth, quizData }) {
       <div className="sticky top-0 bg-black">
         <NavBar userSettings={userSettings} />
       </div>
-      <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-800">
-        <div className="rounded-xl m-4 p-4 bg-slate-700 h-full">
-          <div className="rounded-xl m-2 p-2 bg-slate-600 h-full">
+      <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-900">
+        <div className="rounded-xl m-4 p-4 bg-slate-800 h-full">
+          <div className="rounded-xl m-2 p-2 bg-slate-700 h-full">
             {!completed ? (
               <div>
                 <div className="flex p-4 pb-0 justify-between">
-                  <div className="m-2 p-3 bg-slate-500 rounded-xl">
+                  <div className="m-2 p-3 bg-slate-300 rounded-xl">
                     <span className="font-bold">
                       Question {currQ + 1} / {questions.length}{" "}
                     </span>
                   </div>
-                  <div className="m-2 p-3 bg-slate-500 rounded-xl">
+                  <div className="m-2 p-3 bg-slate-300 rounded-xl">
                     <span className="font-bold">
                       {" "}
                       Score {currScore} / {questions.length}
