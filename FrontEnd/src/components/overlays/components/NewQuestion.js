@@ -101,10 +101,15 @@ function NewQuestion({ questions, setQuestions, setAddQuestion, setMessage }) {
           </div>
           <div className="pb-3 flex justify-evenly text-black">
             <span className="text-white"> Choose the correct answer</span>
-            <select onChange={handleCorrectChange}>
+            <select
+              className="max-w-[200px] truncate rounded-xl md:max-w-xl"
+              onChange={handleCorrectChange}
+            >
               <option> Please select an option</option>
               {choices.map((choice) => (
-                <option value={choice}>{choice}</option>
+                <option className="truncate" value={choice}>
+                  {choice}
+                </option>
               ))}
             </select>
           </div>

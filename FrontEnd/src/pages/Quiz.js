@@ -119,9 +119,9 @@ function Quiz({ loggedInID, userXAuth, quizData }) {
       <div className="sticky top-0 bg-black">
         <NavBar userSettings={userSettings} />
       </div>
-      <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-900">
-        <div className="rounded-xl m-4 p-4 bg-slate-800 h-full">
-          <div className="rounded-xl m-2 p-2 bg-slate-700 h-full">
+      <div className="rounded-xl m-1 p-1 md:m-4 md:p-4 bg-slate-900">
+        <div className="rounded-xl m-1 p-1 md:m-4 md:p-4 bg-slate-800 h-full">
+          <div className="rounded-xl m-1 p-1 md:m-2 md:p-2 bg-slate-700 h-full">
             {!completed ? (
               <div>
                 <div className="flex p-4 pb-0 justify-between">

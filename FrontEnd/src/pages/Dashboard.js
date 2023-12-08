@@ -63,9 +63,9 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
         <div>
           <NavBar userSettings={userSettings} />
         </div>
-        <div className="rounded-xl m-4 p-4 h-5/6 bg-slate-900 ">
-          <div className="rounded-xl m-4 p-4 bg-slate-800 h-full">
-            <div className="rounded-xl m-2 p-2 bg-slate-700 h-full overflow-auto">
+        <div className="rounded-xl m-1 p-1 md:m-4 md:p-4 bg-slate-900 ">
+          <div className="rounded-xl m-1 p-1 md:m-4 md:p-4 bg-slate-800 h-full">
+            <div className="rounded-xl m-1 p-1 md:m-2 md:p-2 bg-slate-700 h-full overflow-auto">
               {/* {User Details & Quiz Tools} */}
 
               <div className="m-5 p-3">
@@ -75,10 +75,10 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
                   {/* {User Details} */}
 
                   <div className="bg-slate-300 rounded-lg p-2 font-bold text-lg m-2 ">
-                    <div className="px-3">{userSettings?.name}</div>
-                    <div className="px-3 ">{userSettings?.email}</div>
+                    <div className="truncate px-3">{userSettings?.name}</div>
+                    <div className="truncate px-3 ">{userSettings?.email}</div>
 
-                    <div className="block sm:flex">
+                    <div className="sm:flex">
                       <button onClick={() => setOverlay("made")}>
                         <div className="p-2">
                           <div className=""> Quizzes Made</div>
