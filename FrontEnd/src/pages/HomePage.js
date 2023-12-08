@@ -300,7 +300,7 @@ function Overlay({ overlay, setOverlay, setLoggedInID, setUserXAuth }) {
   );
 }
 
-function HomePage({ setLoggedInID, setUserXAuth }) {
+function HomePage({ setLoggedInID, setUserXAuth, backendActive }) {
   const screenSize = useScreenSize();
   const [overlay, setOverlay] = useState("");
 
@@ -362,6 +362,16 @@ function HomePage({ setLoggedInID, setUserXAuth }) {
           </div>
         </div>
       </div>
+      {backendActive ? (
+        ""
+      ) : (
+        <footer className="sticky bottom-0 text-zinc-700 p-2 flex justify-evenly">
+          <div>
+            <p> A kind request: Since the backend is hosted on Render</p>
+            <p>Kindly wait for a few seconds for the server to start</p>
+          </div>
+        </footer>
+      )}
     </>
   );
 }

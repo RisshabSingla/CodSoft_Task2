@@ -2,13 +2,24 @@ import Dashboard from "./pages/Dashboard";
 import HomePage from "./pages/HomePage";
 import Quiz from "./pages/Quiz";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const [loggedInID, setLoggedInID] = useState("");
   const [userXAuth, setUserXAuth] = useState("");
   const [quizData, setQuiz] = useState("");
-
+  const [backendActive, setBackEndActive] = useState(false);
+  useEffect(() => {
+    async function invokeBackend() {
+      try {
+        const res = await axios.get("http://localhost:8080/api");
+        console.log(res.data);
+        setBackEndActive(true);
+      } catch (err) {}
+    }
+    invokeBackend();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -18,6 +29,7 @@ function App() {
             <HomePage
               setLoggedInID={setLoggedInID}
               setUserXAuth={setUserXAuth}
+              backendActive={backendActive}
             />
           }
         />
