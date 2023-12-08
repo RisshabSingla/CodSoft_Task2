@@ -26,7 +26,9 @@ export function AttendQuiz({ setQuiz }) {
   function handleQuizAttend() {
     async function handle() {
       try {
-        const res = await axios.get(`http://localhost:8080/api/quiz/${quizID}`);
+        const res = await axios.get(
+          `https://trivia-minefield.onrender.com/api/quiz/${quizID}`
+        );
         // console.log("getting");
         setMessage("Quiz starting");
         // console.log(res.data.data);

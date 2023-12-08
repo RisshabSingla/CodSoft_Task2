@@ -69,7 +69,7 @@ function Quiz({ loggedInID, userXAuth, quizData }) {
     async function getData() {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/user/${loggedInID}`
+          `https://trivia-minefield.onrender.com/api/user/${loggedInID}`
         );
         // console.log(res.data);
         setUserSettings(res.data.data);

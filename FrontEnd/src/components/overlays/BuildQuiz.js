@@ -31,7 +31,10 @@ function BuildQuiz({ setOverlay }) {
         description: quizDesc,
         questions: questions,
       };
-      const res = await axios.post("http://localhost:8080/api/quiz", quiz);
+      const res = await axios.post(
+        "https://trivia-minefield.onrender.com/api/quiz",
+        quiz
+      );
       setMessage("Quiz made successfully");
       setTimeout(() => {
         setMessage("");

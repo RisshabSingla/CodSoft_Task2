@@ -17,7 +17,7 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
     async function getData() {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/user/${loggedInID}`
+          `https://trivia-minefield.onrender.com/api/user/${loggedInID}`
         );
         // console.log(res.data);
         setUserSettings(res.data.data);
@@ -32,7 +32,9 @@ function Dashboard({ loggedInID, userXAuth, setQuiz }) {
   useEffect(() => {
     async function getQuizes() {
       try {
-        const res = await axios.get(`http://localhost:8080/api/quiz/`);
+        const res = await axios.get(
+          `https://trivia-minefield.onrender.com/api/quiz/`
+        );
         // console.log(res.data);
         setQuizes(res.data.data);
       } catch (err) {

@@ -30,7 +30,7 @@ function Login({
   function handleLoginUser(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/login", user)
+      .post("https://trivia-minefield.onrender.com/api/login", user)
       .then((res) => {
         // console.log(res);
         setUserXAuth(res.data.data);
@@ -143,7 +143,7 @@ function SignUp({ setOverlay, message, setMessage }) {
 
     // console.log(data);
     axios
-      .post("http://localhost:8080/api/user", user)
+      .post("https://trivia-minefield.onrender.com/api/user", user)
       .then((res) => {
         // console.log(res);
         setMessage("Please login using your new credentials");

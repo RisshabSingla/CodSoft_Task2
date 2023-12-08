@@ -13,7 +13,9 @@ function App() {
   useEffect(() => {
     async function invokeBackend() {
       try {
-        const res = await axios.get("http://localhost:8080/api");
+        const res = await axios.get(
+          "https://trivia-minefield.onrender.com/api"
+        );
         console.log(res.data);
         setBackEndActive(true);
       } catch (err) {}
